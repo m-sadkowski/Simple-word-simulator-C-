@@ -127,18 +127,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Antylopa.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Czlowiek.cpp" />
+    <ClCompile Include="Lis.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mlecz.cpp" />
     <ClCompile Include="Organizm.cpp" />
     <ClCompile Include="Roslina.cpp" />
     <ClCompile Include="Swiat.cpp" />
+    <ClCompile Include="Zolw.cpp" />
     <ClCompile Include="Zwierze.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Antylopa.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Czlowiek.h" />
+    <ClInclude Include="Lis.h" />
+    <ClInclude Include="Mlecz.h" />
     <ClInclude Include="Organizm.h" />
+    <ClInclude Include="Owca.h" />
     <ClInclude Include="Roslina.h" />
     <ClInclude Include="Swiat.h" />
+    <ClInclude Include="Trawa.h" />
+    <ClInclude Include="Wilk.h" />
+    <ClInclude Include="Zolw.h" />
     <ClInclude Include="Zwierze.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
