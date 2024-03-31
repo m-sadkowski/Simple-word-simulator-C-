@@ -107,5 +107,8 @@
     <ClInclude Include="BarszczSosnowskiego.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="FabrykaZwierzat.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

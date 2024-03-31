@@ -11,23 +11,37 @@ void BarszczSosnowskiego::kolizja(Organizm* organizm) {
 }
 
 void BarszczSosnowskiego::akcja() {
-	bool atak = false;
 	if (swiat->getOrganizm(x, y + 1) != nullptr) {
-		atak = true;
+
+		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
+		komunikat += swiat->getOrganizm(x, y + 1)->nazwaOrganizmu(swiat->getOrganizm(x, y + 1)->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+
 		swiat->usunOrganizm(swiat->getOrganizm(x, y + 1));
 	}
 	if (swiat->getOrganizm(x, y - 1) != nullptr) {
-		atak = true;
+
+		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
+		komunikat += swiat->getOrganizm(x, y - 1)->nazwaOrganizmu(swiat->getOrganizm(x, y - 1)->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+
 		swiat->usunOrganizm(swiat->getOrganizm(x, y - 1));
 	}
 	if (swiat->getOrganizm(x + 1, y) != nullptr) {
-		atak = true;
+
+		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
+		komunikat += swiat->getOrganizm(x + 1, y)->nazwaOrganizmu(swiat->getOrganizm(x + 1, y)->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+		
 		swiat->usunOrganizm(swiat->getOrganizm(x + 1, y));
 	}
 	if (swiat->getOrganizm(x - 1, y) != nullptr) {
-		atak = true;
+
+		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
+		komunikat += swiat->getOrganizm(x - 1, y)->nazwaOrganizmu(swiat->getOrganizm(x - 1, y)->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+		
 		swiat->usunOrganizm(swiat->getOrganizm(x - 1, y));
 
 	}
-	if(atak) swiat->dodajKomunikat("Barszcz Sosnowskiego atakuje ");
 }

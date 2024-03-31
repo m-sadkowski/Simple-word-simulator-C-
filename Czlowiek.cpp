@@ -1,9 +1,6 @@
-#include<iostream>
-#include<windows.h>
-#include<string>
-
 #include"Czlowiek.h"
 #include"Swiat.h"
+#include"Roslina.h"
 
 void Czlowiek::akcja(char c) {
 	
@@ -68,35 +65,36 @@ void Czlowiek::akcja(char c) {
 }
 
 void Czlowiek::kolizja(Organizm* organizm) {
-	std::string komunikat = "Czlowiek na pozycji (" + std::to_string(x) + ", " + std::to_string(y) + ")";
 	if (organizm->getSila() > this->sila) {
-		komunikat = komunikat + " zostal zabity przez " + organizm->getSymbol();
+
+		std::string komunikat = "Czlowiek ginie przez "; // KOMUNIKATY
+		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+
+		swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
 		swiat->usunOrganizm(this);
 	}
 	else {
-		if (organizm->getSymbol() == 'Z' && this->getSila() < 5) {
-			komunikat = komunikat + " zostal odparty przez " + organizm->getSymbol();
+		if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A') {
+			organizm->kolizja(this);
+			return;
 		}
-		else if (organizm->getSymbol() == 'A')
-			{
-				if (rand() % 2 == 0)
-				{
-					swiat->dodajKomunikat("Antylopa ucieka");
-				}
-				else
-				{
-					komunikat = komunikat + " zabil " + organizm->getSymbol();
-					swiat->usunOrganizm(organizm);
-					swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
-				}
-			}
 		else {
-			komunikat = komunikat + " zabil " + organizm->getSymbol();
-			swiat->usunOrganizm(organizm);
+			std::string komunikat = "Czlowiek "; // KOMUNIKATY
+			Roslina* roslina = dynamic_cast<Roslina*>(organizm);
+			if (roslina) {
+				komunikat += "zjada ";
+			}
+			else {
+				komunikat += "zabija ";
+			}
+			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+			swiat->dodajKomunikat(komunikat);
+
 			swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
+			swiat->usunOrganizm(organizm);
 		}
 	}
-	swiat->dodajKomunikat(komunikat);
 }
 
 void Czlowiek::aktywujMoc() {

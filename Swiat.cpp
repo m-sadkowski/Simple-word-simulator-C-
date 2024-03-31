@@ -1,5 +1,3 @@
-#include<iostream>
-
 #include"Swiat.h"
 #include"Cursor.h"
 
@@ -31,6 +29,11 @@ Swiat::Swiat(int m, int n) {
 		}
 	}
 	generujSwiat();
+	/*dodajOrganizm(new Czlowiek(1, 1, this));
+	dodajOrganizm(new Wilk(1, 2, this));
+	dodajOrganizm(new Wilk(2, 2, this));
+	dodajOrganizm(new Wilk(3, 2, this));
+	dodajOrganizm(new Wilk(4, 2, this));*/
 }
 
 Para Swiat::generujOrganizm() {
@@ -116,8 +119,10 @@ void Swiat::rysujSwiat() {
 	for (int i = 0; i < organizmy.size(); i++) {
 		organizmy[i]->rysowanie();
 	}
-	for (int i = 0; i < komunikaty.size(); i++) {
-		gotoxy(n + 1, 3 + i);
+	int j = 0;
+	for (int i = komunikaty.size() - 1; i >= 0; i--) {
+		gotoxy(n + 1, 3 + j);
+		j++;
 		std::cout << komunikaty[i];
 	}
 	komunikaty.clear();
@@ -131,6 +136,12 @@ void Swiat::wykonajTure(char strzalka) {
 	posortujOrganizmy();
 	for (int i = 0; i < organizmy.size(); i++) {
 		organizmy[i]->zwiekszWiek();
+		if (organizmy[i]->getCooldown())
+		{
+			organizmy[i]->zmniejszCooldown();
+		}
+		//Sleep(1000);
+		//rysujSwiat();
 		if (organizmy[i]->getSymbol() == 'C') {
 			Czlowiek* czlowiek = dynamic_cast<Czlowiek*>(organizmy[i]);
 			czlowiek->akcja(strzalka);

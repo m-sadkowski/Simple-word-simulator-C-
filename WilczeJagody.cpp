@@ -2,6 +2,11 @@
 #include"Swiat.h"
 
 void WilczeJagody::kolizja(Organizm* organizm) {
-	swiat->dodajKomunikat("Wilcze Jagody zatruwaja " + organizm->getSymbol());
+
+	std::string komunikat = "Wilcze Jagody zabija  "; // KOMUNIKATY
+	komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+	swiat->dodajKomunikat(komunikat);
+
+	swiat->dodajKomunikat(komunikat);
 	swiat->usunOrganizm(organizm);
 }

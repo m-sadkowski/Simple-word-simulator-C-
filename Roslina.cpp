@@ -2,7 +2,6 @@
 #include"Swiat.h"
 #include"Cursor.h"
 
-
 using namespace std;
 
 void Roslina::akcja() {
@@ -16,6 +15,10 @@ void Roslina::akcja() {
 			return;
 		}
 		swiat->dodajOrganizm(new Roslina(this->sila, this->inicjatywa, this->symbol, newX, newY, this->swiat));
+
+		std::string komunikat = "rozprzestrzenia sie "; // KOMUNIKATY
+		komunikat += this->nazwaOrganizmu(this->getSymbol());
+		swiat->dodajKomunikat(komunikat);
 	}
 }
 

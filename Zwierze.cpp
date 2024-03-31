@@ -1,9 +1,8 @@
-#include<iostream>
-#include<cstdlib>
-#include<string>
-
+#include"Cursor.h"
 #include"Zwierze.h"
 #include"Swiat.h"
+#include"FabrykaZwierzat.h"
+#include"Roslina.h"
 
 using namespace std;
 
@@ -42,43 +41,49 @@ void Zwierze::akcja() {
 }
 
 void Zwierze::kolizja(Organizm* organizm) {
+	std::string komunikat = "";
 	if (organizm->getSymbol() == this->getSymbol()) {
-		std::string komunikat = std::string(1, symbol) + " na pozycji: " + std::to_string(x + 1) + ", " + std::to_string(y);
-		Organizm* nowy = new Zwierze(this->sila, this->inicjatywa, this->symbol, this->x + 1, this->y, this->swiat);
-		swiat->dodajOrganizm(nowy);
-		komunikat = "Rozmnozenie: " + komunikat;
-		swiat->dodajKomunikat(komunikat);
+		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+		if (organizm->getCooldown() == 0 && this->getCooldown() == 0)
+		{
+			Zwierze* nowy = FabrykaZwierzat::utworzZwierze(this->getSymbol(), this->x + 1, this->y, this->swiat);
+			swiat->dodajOrganizm(nowy);
+			komunikat = "rozmnozenie " + komunikat;
+			swiat->dodajKomunikat(komunikat);
+			this->setCooldown(5);
+			organizm->setCooldown(5);
+		}
 	}
 	else {
-		std::string komunikat = std::string(1, symbol) + " na pozycji (" + std::to_string(x) + ", " + std::to_string(y) + ")";
+		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
 		if (organizm->getSila() > this->getSila()) {
-			komunikat = komunikat + " zostal zabity przez " + organizm->getSymbol();
+			komunikat = komunikat + " ginie przez "; // KOMUNIKATY
+			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+			swiat->dodajKomunikat(komunikat);
+
+			swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
 			swiat->usunOrganizm(this);
 		}
 		else {
-			if (organizm->getSymbol() == 'Z' && this->getSila() < 5) {
-				komunikat = komunikat + " zostal odparty przez " + organizm->getSymbol();
-			}
-			else if (organizm->getSymbol() == 'A')
-			{
-				if (rand() % 2 == 0)
-				{
-					swiat->dodajKomunikat("Antylopa ucieka");
-				}
-				else
-				{
-					komunikat = komunikat + " zabil " + organizm->getSymbol();
-					swiat->usunOrganizm(organizm);
-					swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
-				}
+			if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A') {
+				organizm->kolizja(this);
+				return;
 			}
 			else {
-				komunikat = komunikat + " zabil " + organizm->getSymbol();
-				swiat->usunOrganizm(organizm);
+				komunikat = komunikat + " "; // KOMUNIKATY
+				Roslina* roslina = dynamic_cast<Roslina*>(organizm);
+				if (roslina) {
+					komunikat += "zjada ";
+				}
+				else {
+					komunikat += "zabija ";
+				}
+				komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+				swiat->dodajKomunikat(komunikat);
 				swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
+				swiat->usunOrganizm(organizm);
 			}
 		}
-		swiat->dodajKomunikat(komunikat);
 	}
 }
 

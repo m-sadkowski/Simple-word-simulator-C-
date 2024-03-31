@@ -1,7 +1,6 @@
-#include<cstdlib>
-
 #include"Zolw.h"
 #include"Swiat.h"
+#include"Roslina.h"
 
 void Zolw::akcja() {
 	if (rand() % 4 == 0) {
@@ -10,13 +9,40 @@ void Zolw::akcja() {
 }
 
 void Zolw::kolizja(Organizm* organizm) {
-	if (organizm->getSymbol() == 'Z') {
+	if (organizm->getSymbol() == this->getSymbol()) {
 		Zwierze::kolizja(organizm);
 	}
 	else if (organizm->getSila() < 5) {
-		swiat->dodajKomunikat("Zolw odparl atak organizmu " + organizm->getSymbol());
+
+		std::string komunikat = "Zolw odparl atak  "; // KOMUNIKATY
+		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+		swiat->dodajKomunikat(komunikat);
+
 	}
 	else {
-		Zwierze::kolizja(organizm);
+		if (organizm->getSila() > this->getSila())
+		{
+			std::string komunikat = "Zolw ginie przez  "; // KOMUNIKATY
+			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+			swiat->dodajKomunikat(komunikat);
+
+			swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
+			swiat->usunOrganizm(this);
+		}
+		else {
+			std::string komunikat = "Zolw "; // KOMUNIKATY
+			Roslina* roslina = dynamic_cast<Roslina*>(organizm);
+			if (roslina) {
+				komunikat += "zjada ";
+			}
+			else {
+				komunikat += "zabija ";
+			}
+			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+			swiat->dodajKomunikat(komunikat);
+
+			swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
+			swiat->usunOrganizm(organizm);
+		}
 	}
 }
