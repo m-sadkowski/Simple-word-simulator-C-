@@ -4,6 +4,15 @@
 
 #include"Organizm.h"
 
+struct Para {
+	int x;
+	int y;
+	Para(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+};
+
 class Swiat {
 	int m, n;
 	char** plansza;
@@ -14,6 +23,8 @@ public:
 	Swiat(int m, int n);
 
 	// METODY
+	void generujSwiat();
+	Para generujOrganizm();
 	void wykonajTure(char strzalka);
 	void rysujSwiat();
 	void dodajOrganizm(Organizm* organizm);
@@ -25,6 +36,7 @@ public:
 	// GETTERY
 	const int getWysokosc() { return m; }
 	const int getSzerokosc() { return n; }
+	const int getIloscOrganizmow() { return organizmy.size(); }
 	Organizm* getOrganizm(int x, int y);
 
 	// DESTRUKTOR 

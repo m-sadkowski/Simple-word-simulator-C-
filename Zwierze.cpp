@@ -43,7 +43,7 @@ void Zwierze::akcja() {
 
 void Zwierze::kolizja(Organizm* organizm) {
 	if (organizm->getSymbol() == this->getSymbol()) {
-		std::string komunikat = std::string(1, symbol) + " na pozycji: " + std::to_string(x) + ", " + std::to_string(y);
+		std::string komunikat = std::string(1, symbol) + " na pozycji: " + std::to_string(x + 1) + ", " + std::to_string(y);
 		Organizm* nowy = new Zwierze(this->sila, this->inicjatywa, this->symbol, this->x + 1, this->y, this->swiat);
 		swiat->dodajOrganizm(nowy);
 		komunikat = "Rozmnozenie: " + komunikat;

@@ -17,4 +17,3 @@ void Organizm::rysowanie()
 	gotoxy(0, 0);
 }
 
-

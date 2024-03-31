@@ -30,6 +30,7 @@ public:
 	// SETTERY 
 	void setX(int x) { this->x = x; }
 	void setY(int y) { this->y = y; }
+	void setSila(int sila) { this->sila = sila; }
 
 	// DESTRUKTOR
 	~Organizm();

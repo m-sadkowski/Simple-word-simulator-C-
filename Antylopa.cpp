@@ -28,8 +28,16 @@ void Antylopa::akcja() {
 	}
 
 	if (newX <= 0 || newX >= swiat->getSzerokosc() - 1 || newY <= 0 || newY >= swiat->getWysokosc() - 1) {
-		Zwierze::akcja();
+		Antylopa::akcja();
 		return;
+	}
+
+	if (swiat->getOrganizm(newX, newY) == nullptr) {
+		this->setX(newX);
+		this->setY(newY);
+	}
+	else if (newX != this->getX() || newY != this->getY()) {
+		this->kolizja(swiat->getOrganizm(newX, newY));
 	}
 }
 
@@ -43,10 +51,6 @@ void Antylopa::kolizja(Organizm* organizm) {
 	else
 	{
 		swiat->dodajKomunikat("Antylopa ucieka przed " + std::string(1, organizm->getSymbol()));
-		int newX = this->getX() + (rand() % 3) - 1;
-		int newY = this->getY() + (rand() % 3) - 1;
-		if (newX > 0 && newX < swiat->getSzerokosc() - 1 && newY > 0 && newY < swiat->getWysokosc() - 1 && swiat->getOrganizm(newX,newY)) {
-			swiat->przeniesOrganizm(this, newX, newY);
-		}
+		Antylopa::akcja();
 	}
 }

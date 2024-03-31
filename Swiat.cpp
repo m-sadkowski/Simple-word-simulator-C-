@@ -2,7 +2,18 @@
 
 #include"Swiat.h"
 #include"Cursor.h"
+
 #include"Czlowiek.h"
+#include "Wilk.h"
+#include "Owca.h"
+#include "Zolw.h"
+#include "Lis.h"
+#include "Antylopa.h"
+#include "Trawa.h"
+#include "Mlecz.h"
+#include "Guarana.h"
+#include "WilczeJagody.h"
+#include "BarszczSosnowskiego.h"
 
 Swiat::Swiat(int m, int n) {
 	this->m = m;
@@ -19,6 +30,79 @@ Swiat::Swiat(int m, int n) {
 			}
 		}
 	}
+	generujSwiat();
+}
+
+Para Swiat::generujOrganizm() {
+	while (true) {
+		int X = rand() % (m - 2) + 1;
+		int Y = rand() % (n - 2) + 1;
+		if (getOrganizm(X, Y) == nullptr)
+		{
+			return Para(X, Y);
+		}
+	}
+}
+
+void Swiat::generujSwiat() {
+	int maxOrganizmow = (m + n) / 11;
+	int ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Owca(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Wilk(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Zolw(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Lis(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Antylopa(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Trawa(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Mlecz(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Guarana(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new WilczeJagody(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new BarszczSosnowskiego(para.x, para.y, this));
+	}
+	ilosc = rand() % maxOrganizmow + 1;
+	for (int j = 0; j < ilosc; j++) {
+		Para para = generujOrganizm();
+		this->dodajOrganizm(new Owca(para.x, para.y, this));
+	}
+	Para para = generujOrganizm();
+	this->dodajOrganizm(new Czlowiek(para.x, para.y, this));
 }
 
 void Swiat::rysujSwiat() {
