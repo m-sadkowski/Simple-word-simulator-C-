@@ -23,16 +23,7 @@ void Roslina::akcja() {
 }
 
 void Roslina::kolizja(Organizm* organizm) {
-	/*
-	if (organizm->getSila() < this->sila)
-	{
-		swiat->usunOrganizm(organizm);
-	}
-	else
-	{
-		swiat->usunOrganizm(this);
-	}
-	*/
+	return;
 }
 
 Roslina::~Roslina() {}

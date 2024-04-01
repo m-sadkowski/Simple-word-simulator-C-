@@ -3,8 +3,6 @@
 #include"Roslina.h"
 
 void Czlowiek::akcja(char c) {
-	
-	//swiat->dodajKomunikat("Sila czlowieka wynosi" + std::to_string(this->sila));
 	// OBSLUGA MOCY
 	if (czasMocy == 5)
 	{
@@ -13,9 +11,10 @@ void Czlowiek::akcja(char c) {
 		czasMocy = 0;
 		cooldown = 5;
 	}
-	if (this->sila > stalaSila)
+	if (this->sila > stalaSila && mocUzyta)
 	{
 		this->sila--;
+		swiat->dodajKomunikat("Sila czlowieka wynosi " + std::to_string(this->sila));
 	}
 
 	// RUCH
@@ -51,8 +50,8 @@ void Czlowiek::akcja(char c) {
 	// KOLIZJA PO RUCHU
 	if (swiat->getOrganizm(newX, newY) != nullptr && (newX != x || newY != y))
 	{
-		kolizja(swiat->getOrganizm(newX, newY));
-		if (this != nullptr && swiat->getOrganizm(newX, newY) == nullptr)
+		this->kolizja(swiat->getOrganizm(newX, newY));
+		if (this != nullptr)
 		{
 			swiat->przeniesOrganizm(this, newX, newY);
 		}
@@ -61,39 +60,6 @@ void Czlowiek::akcja(char c) {
 	{
 		swiat->przeniesOrganizm(this, newX, newY);
 	}
-	
-}
-
-void Czlowiek::kolizja(Organizm* organizm) {
-	/*
-	if (organizm->getSila() > this->sila) {
-		std::string komunikat = "Czlowiek ginie przez "; // KOMUNIKATY
-		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
-		swiat->dodajKomunikat(komunikat);
-
-		swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
-		swiat->usunOrganizm(this);
-	}
-	else {
-		if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A' || organizm->getSymbol() == 'g') {
-			organizm->kolizja(this);
-		}
-		else {
-			std::string komunikat = "Czlowiek "; // KOMUNIKATY
-			Roslina* roslina = dynamic_cast<Roslina*>(organizm);
-			if (roslina) {
-				komunikat += "zjada ";
-			}
-			else {
-				komunikat += "zabija ";
-			}
-			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
-			swiat->dodajKomunikat(komunikat);
-
-			swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
-			swiat->usunOrganizm(organizm);
-		}
-	}*/
 }
 
 void Czlowiek::aktywujMoc() {

@@ -38,6 +38,7 @@ public:
 	void dodajKomunikat(std::string komunikat) { komunikaty.push_back(komunikat); }
 	void zapiszSwiat();
 	void wczytajSwiat();
+	void kasujSwiat(std::ifstream& plik);
 
 	// GETTERY
 	const int getWysokosc() { return m; }

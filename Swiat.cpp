@@ -28,11 +28,6 @@ Swiat::Swiat(int m, int n) {
 			}
 		}
 	}
-	/*dodajOrganizm(new Czlowiek(1, 1, this));
-	dodajOrganizm(new Wilk(1, 2, this));
-	dodajOrganizm(new Wilk(2, 2, this));
-	dodajOrganizm(new Wilk(3, 2, this));
-	dodajOrganizm(new Wilk(4, 2, this));*/
 }
 
 Para Swiat::generujOrganizm() {
@@ -105,6 +100,13 @@ void Swiat::generujSwiat() {
 	}
 	Para para = generujOrganizm();
 	this->dodajOrganizm(new Czlowiek(para.x, para.y, this));
+	/*
+	this->dodajOrganizm(new Zolw(3, 3, this));
+	this->dodajOrganizm(new WilczeJagody(2, 3, this));
+	this->dodajOrganizm(new WilczeJagody(4, 3, this));
+	this->dodajOrganizm(new WilczeJagody(3, 2, this));
+	this->dodajOrganizm(new WilczeJagody(3, 4, this));
+	*/
 }
 
 void Swiat::rysujSwiat() {
@@ -128,19 +130,19 @@ void Swiat::rysujSwiat() {
 	for (int i = 0; i < organizmy.size(); i++) {
 		gotoxy(n + 1, m + 1 + i);
 		std::cout << organizmy[i];
-	}*/
-
+	}
+	*/
 	komunikaty.clear();
 	gotoxy(n + 1, 1);
 	std::cout << "Autor: Michal Sadkowski 197776";
 	gotoxy(n + 1, 2);
-	std::cout << "'q' aby zakonczyc";
+	std::cout << "- 'q' aby zakonczyc";
 	gotoxy(n + 1, 3);
-	std::cout << "'z' aby zapisac gre.";
+	std::cout << "- 'z' aby zapisac gre";
 }
 
 void Swiat::wykonajTure(char strzalka) {
-	if (!(strzalka == 'w' || strzalka == 'a' || strzalka == 's' || strzalka == 'd'))
+	if (!(strzalka == 'w' || strzalka == 'a' || strzalka == 's' || strzalka == 'd' || strzalka == 'm'))
 	{
 		return;
 	}
@@ -222,23 +224,12 @@ void Swiat::zapiszSwiat()
 	std::cout << "Nacisnij dowolny klawisz aby kontynuowac.";
 }
 
-void Swiat::wczytajSwiat()
+void Swiat::kasujSwiat(std::ifstream& plik)
 {
-	system("cls");
-	std::cout << "Podaj nazwe pliku do wczytania: ";
-	std::string nazwa_pliku;
-	std::cin >> nazwa_pliku;
-	nazwa_pliku += ".txt";
-	std::ifstream plik(nazwa_pliku);
-	if (!plik.is_open()) {
-		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
-		std::cout << "Nacisnij dowolny klawisz aby kontynuowac.";
-		return;
-	}
 	int m, n;
 	plik >> m >> n;
 	delete[] plansza;
-	plansza = new char*[m];
+	plansza = new char* [m];
 	for (int i = 0; i < m; i++) {
 		plansza[i] = new char[n];
 		for (int j = 0; j < n; j++) {
@@ -256,7 +247,22 @@ void Swiat::wczytajSwiat()
 		delete organizmy[i];
 	}
 	organizmy.clear();
+}
 
+void Swiat::wczytajSwiat()
+{
+	system("cls");
+	std::cout << "Podaj nazwe pliku do wczytania: ";
+	std::string nazwa_pliku;
+	std::cin >> nazwa_pliku;
+	nazwa_pliku += ".txt";
+	std::ifstream plik(nazwa_pliku);
+	if (!plik.is_open()) {
+		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
+		std::cout << "Nacisnij dowolny klawisz aby kontynuowac.";
+		return;
+	}
+	kasujSwiat(plik);
 	int ilosc;
 	plik >> ilosc;
 	for (int i = 0; i < ilosc; i++) {

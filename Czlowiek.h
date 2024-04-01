@@ -12,7 +12,7 @@ public:
 	Czlowiek(int x, int y, Swiat* swiat, int wiek, int sila, int inicjatywa, int cooldown) : Zwierze(x, y, swiat, 'C', wiek, sila, inicjatywa, cooldown) {}
 
 	void akcja(char c);
-	void kolizja(Organizm* organizm) override;
+	bool maSwojaKolizje() override { return false; }
 	void aktywujMoc();
 	~Czlowiek();
 };

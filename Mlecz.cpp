@@ -4,7 +4,7 @@
 void Mlecz::akcja() {
 	for (int i = 0; i < 3; i++)
 	{
-		int iloscOrganizmow = swiat->getIloscOrganizmow();
+		size_t iloscOrganizmow = swiat->getIloscOrganizmow();
 		Roslina::akcja();
 		if (iloscOrganizmow > swiat->getIloscOrganizmow())
 		{

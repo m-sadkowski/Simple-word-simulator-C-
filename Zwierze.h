@@ -12,6 +12,7 @@ public:
 	// METODY
 	void akcja() override;
 	void kolizja(Organizm* organizm) override;
+	bool maSwojaKolizje() override { return false; }
 
 	// DESTRUKTOR
 	~Zwierze();

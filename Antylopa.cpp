@@ -41,41 +41,25 @@ void Antylopa::akcja() {
 }
 
 void Antylopa::kolizja(Organizm* organizm) {
-	/*
-	if (organizm->getSymbol() == this->getSymbol()) {
-		Zwierze::kolizja(organizm);
-	}
-	else if (organizm->getSila() > this->getSila()) {
-		if (rand() % 2 ? 0 : 1) {
-			std::string komunikat = "Antylopa ginie przez "; // KOMUNIKATY
-			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+	if (organizm->getSila() > this->getSila())
+	{
+		if (rand() % 2 ? 1 : 0)
+		{
+			std::string komunikat = this->nazwaOrganizmu(this->getSymbol()) + " ucieka przed " + organizm->nazwaOrganizmu(organizm->getSymbol());
 			swiat->dodajKomunikat(komunikat);
-
+			this->akcja();
+		}
+		else
+		{
+			std::string komunikat = organizm->nazwaOrganizmu(organizm->getSymbol()) + " zabija " + this->nazwaOrganizmu(this->getSymbol());
+			swiat->dodajKomunikat(komunikat);
 			swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
 			swiat->usunOrganizm(this);
 		}
-		else {
-			std::string komunikat = "Antylopa ucieka przed "; // KOMUNIKATY
-			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
-			swiat->dodajKomunikat(komunikat);
-
-			Antylopa::akcja();
-		}
 	}
-	else {
-		std::string komunikat = "Antylopa "; // KOMUNIKATY
-		Roslina* roslina = dynamic_cast<Roslina*>(organizm);
-		if (roslina) {
-			komunikat += "zjada ";
-		}
-		else {
-			komunikat += "zabija ";
-		}
-		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
-		swiat->dodajKomunikat(komunikat);
-
-		swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
-		swiat->usunOrganizm(organizm);
+	else
+	{
+		this->Zwierze::kolizja(organizm);
 	}
-	*/
+	return;
 }

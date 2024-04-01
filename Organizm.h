@@ -20,6 +20,7 @@ public:
 	// METODY
 	virtual void akcja() = 0;
 	virtual void kolizja(Organizm* organizm) = 0;
+	virtual bool maSwojaKolizje() = 0;
 	void rysowanie();
 	void zwiekszWiek() { wiek++; }
 	void zmniejszCooldown() { cooldown--; }

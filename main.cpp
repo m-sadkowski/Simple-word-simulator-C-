@@ -7,7 +7,7 @@
 
 int main() {
     Swiat* swiat = new Swiat(0, 0);
-    srand(time(NULL));
+    srand(static_cast<unsigned int>(time(NULL)));
     char strzalka = ' ';
     std::cout << "Wcisnij w aby wczytac zapis gry." << std::endl;
     std::cout << "Wcisnij n aby rozpoczac nowa gre." << std::endl;

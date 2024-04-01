@@ -11,6 +11,7 @@ public:
 	// METODY
 	void kolizja(Organizm* organizm) override;
 	void akcja() override;
+	bool maSwojaKolizje() override { return true; }
 
 	// DESTRUKTOR
 	~BarszczSosnowskiego();

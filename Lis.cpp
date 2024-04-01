@@ -29,19 +29,14 @@ void Lis::akcja() {
 	if (swiat->getOrganizm(newX, newY) == nullptr) {
 		swiat->przeniesOrganizm(this, newX, newY);
 	}
-	/*
 	else if (newX != this->getX() || newY != this->getY()) {
 		Organizm* organizm = swiat->getOrganizm(newX, newY);
-		if (organizm->getSila() > this->getSila())
-		{
-			std::string komunikat = "Lis korzysta z dobrego wechu i omija "; // KOMUNIKATY
-			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+		if (organizm->getSila() > this->getSila()) {
+			std::string komunikat = "Lis korzysta z dobrego wechu i omija " + organizm->nazwaOrganizmu(organizm->getSymbol());
 			swiat->dodajKomunikat(komunikat);
-
 		}
 		else {
 			this->kolizja(organizm);
 		}
 	}
-	*/
 }
