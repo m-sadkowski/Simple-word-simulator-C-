@@ -41,31 +41,32 @@ void Zwierze::akcja() {
 }
 
 void Zwierze::kolizja(Organizm* organizm) {
+	/*
 	std::string komunikat = "";
+	komunikat += this->nazwaOrganizmu(this->getSymbol());
 	if (organizm->getSymbol() == this->getSymbol()) {
-		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
 		if (organizm->getCooldown() == 0 && this->getCooldown() == 0)
 		{
 			Zwierze* nowy = FabrykaZwierzat::utworzZwierze(this->getSymbol(), this->x + 1, this->y, this->swiat);
 			swiat->dodajOrganizm(nowy);
-			komunikat = "rozmnozenie " + komunikat;
+			komunikat += " rozmnozenie z inna " + this->nazwaOrganizmu(this->getSymbol());
 			swiat->dodajKomunikat(komunikat);
 			this->setCooldown(5);
 			organizm->setCooldown(5);
 		}
 	}
 	else {
-		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
-		if (organizm->getSila() > this->getSila()) {
+		if (organizm->getSila() > this->getSila() && !dynamic_cast<Roslina*>(organizm)) {
+
 			komunikat = komunikat + " ginie przez "; // KOMUNIKATY
-			komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
+			komunikat += organizm->nazwaOrganizmu(this->getSymbol());
 			swiat->dodajKomunikat(komunikat);
 
 			swiat->przeniesOrganizm(organizm, this->getX(), this->getY());
 			swiat->usunOrganizm(this);
 		}
 		else {
-			if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A') {
+			if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A' || organizm->getSymbol() == 'g') {
 				organizm->kolizja(this);
 				return;
 			}
@@ -85,6 +86,7 @@ void Zwierze::kolizja(Organizm* organizm) {
 			}
 		}
 	}
+	*/
 }
 
 Zwierze::~Zwierze() {}

@@ -2,16 +2,11 @@
 #include"Swiat.h"
 
 void BarszczSosnowskiego::kolizja(Organizm* organizm) {
-	if (organizm->getSymbol() != 'Y') {
-		swiat->usunOrganizm(organizm);
-	}	
-	else {
-		swiat->usunOrganizm(this);
-	}
+	//swiat->usunOrganizm(organizm);
 }
 
 void BarszczSosnowskiego::akcja() {
-	if (swiat->getOrganizm(x, y + 1) != nullptr) {
+	if (swiat->getOrganizm(x, y + 1) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x, y + 1))) {
 
 		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
 		komunikat += swiat->getOrganizm(x, y + 1)->nazwaOrganizmu(swiat->getOrganizm(x, y + 1)->getSymbol());
@@ -19,7 +14,7 @@ void BarszczSosnowskiego::akcja() {
 
 		swiat->usunOrganizm(swiat->getOrganizm(x, y + 1));
 	}
-	if (swiat->getOrganizm(x, y - 1) != nullptr) {
+	if (swiat->getOrganizm(x, y - 1) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x, y - 1))) {
 
 		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
 		komunikat += swiat->getOrganizm(x, y - 1)->nazwaOrganizmu(swiat->getOrganizm(x, y - 1)->getSymbol());
@@ -27,7 +22,7 @@ void BarszczSosnowskiego::akcja() {
 
 		swiat->usunOrganizm(swiat->getOrganizm(x, y - 1));
 	}
-	if (swiat->getOrganizm(x + 1, y) != nullptr) {
+	if (swiat->getOrganizm(x + 1, y) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x + 1, y))) {
 
 		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
 		komunikat += swiat->getOrganizm(x + 1, y)->nazwaOrganizmu(swiat->getOrganizm(x + 1, y)->getSymbol());
@@ -35,7 +30,7 @@ void BarszczSosnowskiego::akcja() {
 		
 		swiat->usunOrganizm(swiat->getOrganizm(x + 1, y));
 	}
-	if (swiat->getOrganizm(x - 1, y) != nullptr) {
+	if (swiat->getOrganizm(x - 1, y) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x - 1, y))) {
 
 		std::string komunikat = "Barszcz Sosnowskiego zabija "; // KOMUNIKATY
 		komunikat += swiat->getOrganizm(x - 1, y)->nazwaOrganizmu(swiat->getOrganizm(x - 1, y)->getSymbol());

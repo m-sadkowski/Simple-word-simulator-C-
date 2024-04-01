@@ -3,6 +3,8 @@
 #include<cstdlib>
 #include<vector>
 #include<string>
+#include<fstream>
+#include<conio.h>
 
 #include"Organizm.h"
 
@@ -34,11 +36,13 @@ public:
 	void przeniesOrganizm(Organizm* organizm, int x, int y);
 	void posortujOrganizmy();
 	void dodajKomunikat(std::string komunikat) { komunikaty.push_back(komunikat); }
+	void zapiszSwiat();
+	void wczytajSwiat();
 
 	// GETTERY
 	const int getWysokosc() { return m; }
 	const int getSzerokosc() { return n; }
-	const int getIloscOrganizmow() { return organizmy.size(); }
+	const size_t getIloscOrganizmow() { return organizmy.size(); }
 	Organizm* getOrganizm(int x, int y);
 
 	// DESTRUKTOR 

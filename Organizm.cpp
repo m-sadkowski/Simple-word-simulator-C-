@@ -5,6 +5,14 @@
 Organizm::Organizm(int sila, int inicjatywa, char symbol, int x, int y, Swiat* swiat)
 	: sila(sila), inicjatywa(inicjatywa), symbol(symbol), x(x), y(y), swiat(swiat), wiek(0) {}
 
+Organizm::Organizm(int x, int y, Swiat* swiat, char symbol, int wiek, int sila, int inicjatywa, int cooldown) 
+	: x(x), y(y), swiat(swiat), symbol(symbol), wiek(wiek), sila(sila), inicjatywa(inicjatywa), cooldown(cooldown) {}
+
+std::ostream& operator<<(std::ostream& out, Organizm* org) {
+	out << org->getSymbol() << " x: " << org->getX() << " y: " << org->getY() << " wiek: " << org->getWiek() << " sila: " << org->getSila() << " inicjatywa: " << org->getInicjatywa() << "\n";
+	return out;
+}
+
 Organizm::~Organizm() {}
 
 void Organizm::rysowanie() {

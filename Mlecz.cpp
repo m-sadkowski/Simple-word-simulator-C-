@@ -2,7 +2,6 @@
 #include"Swiat.h"
 
 void Mlecz::akcja() {
-	
 	for (int i = 0; i < 3; i++)
 	{
 		int iloscOrganizmow = swiat->getIloscOrganizmow();

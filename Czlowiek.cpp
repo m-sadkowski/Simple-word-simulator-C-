@@ -65,8 +65,8 @@ void Czlowiek::akcja(char c) {
 }
 
 void Czlowiek::kolizja(Organizm* organizm) {
+	/*
 	if (organizm->getSila() > this->sila) {
-
 		std::string komunikat = "Czlowiek ginie przez "; // KOMUNIKATY
 		komunikat += organizm->nazwaOrganizmu(organizm->getSymbol());
 		swiat->dodajKomunikat(komunikat);
@@ -75,9 +75,8 @@ void Czlowiek::kolizja(Organizm* organizm) {
 		swiat->usunOrganizm(this);
 	}
 	else {
-		if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A') {
+		if (organizm->getSymbol() == 'Z' || organizm->getSymbol() == 'A' || organizm->getSymbol() == 'g') {
 			organizm->kolizja(this);
-			return;
 		}
 		else {
 			std::string komunikat = "Czlowiek "; // KOMUNIKATY
@@ -94,7 +93,7 @@ void Czlowiek::kolizja(Organizm* organizm) {
 			swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
 			swiat->usunOrganizm(organizm);
 		}
-	}
+	}*/
 }
 
 void Czlowiek::aktywujMoc() {

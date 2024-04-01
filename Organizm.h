@@ -15,6 +15,7 @@ protected:
 public:
 	// KONSTRUKTOR
 	Organizm(int sila, int inicjatywa, char symbol, int x, int y, Swiat* swiat);
+	Organizm(int x, int y, Swiat* swiat, char symbol, int wiek, int sila, int inicjatywa, int cooldown);
 
 	// METODY
 	virtual void akcja() = 0;
@@ -24,13 +25,17 @@ public:
 	void zmniejszCooldown() { cooldown--; }
 	std::string nazwaOrganizmu(char symbol);
 
+	// OPERATORY
+	friend std::ostream& operator<<(std::ostream& out, Organizm* org);
+
 	// GETTERY
-	const int getSila() { return sila; } const
-	const int getInicjatywa() { return inicjatywa; } const
-	const char getSymbol() { return symbol; } const
-	const int getX() { return x; } const
-	const int getY() { return y; } const
-	const int getCooldown() { return cooldown; } const
+	const int getSila() { return sila; } 
+	const int getInicjatywa() { return inicjatywa; } 
+	const char getSymbol() { return symbol; } 
+	const int getX() { return x; } 
+	const int getY() { return y; } 
+	const int getWiek() { return wiek; } 
+	const int getCooldown() { return cooldown; } 
 
 	// SETTERY 
 	void setX(int x) { this->x = x; }

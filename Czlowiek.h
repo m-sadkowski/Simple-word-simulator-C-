@@ -9,6 +9,8 @@ class Czlowiek : public Zwierze {
 	int cooldown = 0;
 public:
 	Czlowiek(int x, int y, Swiat* swiat) : Zwierze(5, 4, 'C', x, y, swiat) {}
+	Czlowiek(int x, int y, Swiat* swiat, int wiek, int sila, int inicjatywa, int cooldown) : Zwierze(x, y, swiat, 'C', wiek, sila, inicjatywa, cooldown) {}
+
 	void akcja(char c);
 	void kolizja(Organizm* organizm) override;
 	void aktywujMoc();

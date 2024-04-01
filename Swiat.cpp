@@ -28,7 +28,6 @@ Swiat::Swiat(int m, int n) {
 			}
 		}
 	}
-	generujSwiat();
 	/*dodajOrganizm(new Czlowiek(1, 1, this));
 	dodajOrganizm(new Wilk(1, 2, this));
 	dodajOrganizm(new Wilk(2, 2, this));
@@ -38,8 +37,8 @@ Swiat::Swiat(int m, int n) {
 
 Para Swiat::generujOrganizm() {
 	while (true) {
-		int X = rand() % (m - 2) + 1;
-		int Y = rand() % (n - 2) + 1;
+		int X = rand() % (n - 2) + 1;
+		int Y = rand() % (m - 2) + 1;
 		if (getOrganizm(X, Y) == nullptr)
 		{
 			return Para(X, Y);
@@ -121,18 +120,30 @@ void Swiat::rysujSwiat() {
 	}
 	int j = 0;
 	for (int i = komunikaty.size() - 1; i >= 0; i--) {
-		gotoxy(n + 1, 3 + j);
+		gotoxy(n + 1, 4 + j);
 		j++;
 		std::cout << komunikaty[i];
 	}
+	/*
+	for (int i = 0; i < organizmy.size(); i++) {
+		gotoxy(n + 1, m + 1 + i);
+		std::cout << organizmy[i];
+	}*/
+
 	komunikaty.clear();
 	gotoxy(n + 1, 1);
 	std::cout << "Autor: Michal Sadkowski 197776";
 	gotoxy(n + 1, 2);
 	std::cout << "'q' aby zakonczyc";
+	gotoxy(n + 1, 3);
+	std::cout << "'z' aby zapisac gre.";
 }
 
 void Swiat::wykonajTure(char strzalka) {
+	if (!(strzalka == 'w' || strzalka == 'a' || strzalka == 's' || strzalka == 'd'))
+	{
+		return;
+	}
 	posortujOrganizmy();
 	for (int i = 0; i < organizmy.size(); i++) {
 		organizmy[i]->zwiekszWiek();
@@ -189,6 +200,106 @@ void Swiat::posortujOrganizmy()
 				organizmy[j] = organizmy[j + 1];
 				organizmy[j + 1] = temp;
 			}
+		}
+	}
+}
+
+void Swiat::zapiszSwiat()
+{
+	system("cls");
+	std::cout << "Podaj nazwe pliku do zapisu: ";
+	std::string nazwa_pliku;
+	std::cin >> nazwa_pliku;
+	nazwa_pliku += ".txt";
+	std::ofstream plik(nazwa_pliku);
+	plik << m << " " << n << std::endl;
+	plik << organizmy.size() << std::endl;
+	for (int i = 0; i < organizmy.size(); i++) {
+		plik << organizmy[i]->getSymbol() << " " << organizmy[i]->getX() << " " << organizmy[i]->getY() << " " << organizmy[i]->getWiek() << " " << organizmy[i]->getSila() << " " << organizmy[i]->getInicjatywa() << " " << organizmy[i]->getCooldown() << std::endl;
+	}
+	plik.close();
+	std::cout << "Plik zostal zapisany." << std::endl;
+	std::cout << "Nacisnij dowolny klawisz aby kontynuowac.";
+}
+
+void Swiat::wczytajSwiat()
+{
+	system("cls");
+	std::cout << "Podaj nazwe pliku do wczytania: ";
+	std::string nazwa_pliku;
+	std::cin >> nazwa_pliku;
+	nazwa_pliku += ".txt";
+	std::ifstream plik(nazwa_pliku);
+	if (!plik.is_open()) {
+		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
+		std::cout << "Nacisnij dowolny klawisz aby kontynuowac.";
+		return;
+	}
+	int m, n;
+	plik >> m >> n;
+	delete[] plansza;
+	plansza = new char*[m];
+	for (int i = 0; i < m; i++) {
+		plansza[i] = new char[n];
+		for (int j = 0; j < n; j++) {
+			if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+				plansza[i][j] = '#';
+			}
+			else {
+				plansza[i][j] = '.';
+			}
+		}
+	}
+	this->m = m;
+	this->n = n;
+	for (int i = 0; i < organizmy.size(); i++) {
+		delete organizmy[i];
+	}
+	organizmy.clear();
+
+	int ilosc;
+	plik >> ilosc;
+	for (int i = 0; i < ilosc; i++) {
+		char symbol;
+		int x, y, wiek, sila, inicjatywa, cooldown;
+		plik >> symbol >> x >> y >> wiek >> sila >> inicjatywa >> cooldown;
+		switch (symbol)
+		{
+			case 'A':
+				dodajOrganizm(new Antylopa(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'b':
+				dodajOrganizm(new BarszczSosnowskiego(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'C':
+				dodajOrganizm(new Czlowiek(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'g':
+				dodajOrganizm(new Guarana(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'L':
+				dodajOrganizm(new Lis(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'm':
+				dodajOrganizm(new Mlecz(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'O':
+				dodajOrganizm(new Owca(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 't':
+				dodajOrganizm(new Trawa(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'w':
+				dodajOrganizm(new WilczeJagody(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'W':
+				dodajOrganizm(new Wilk(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			case 'Z':
+				dodajOrganizm(new Zolw(x, y, this, wiek, sila, inicjatywa, cooldown));
+				break;
+			default:
+				break;
 		}
 	}
 }

@@ -41,6 +41,7 @@ void Antylopa::akcja() {
 }
 
 void Antylopa::kolizja(Organizm* organizm) {
+	/*
 	if (organizm->getSymbol() == this->getSymbol()) {
 		Zwierze::kolizja(organizm);
 	}
@@ -76,4 +77,5 @@ void Antylopa::kolizja(Organizm* organizm) {
 		swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
 		swiat->usunOrganizm(organizm);
 	}
+	*/
 }
