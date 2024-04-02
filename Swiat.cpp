@@ -111,6 +111,7 @@ void Swiat::generujSwiat() {
 
 void Swiat::rysujSwiat() {
 	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE);
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			std::cout << plansza[i][j];
@@ -118,8 +119,19 @@ void Swiat::rysujSwiat() {
 		std::cout << std::endl;
 	}
 	for (int i = 0; i < organizmy.size(); i++) {
+		if (organizmy[i]->getInicjatywa() == 0) {
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN);
+		}
+		else if (organizmy[i]->getSymbol() == 'C') {
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN);
+		}
+		else
+		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED);
+		}
 		organizmy[i]->rysowanie();
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE);
 	int j = 0;
 	for (int i = komunikaty.size() - 1; i >= 0; i--) {
 		gotoxy(n + 1, 4 + j);

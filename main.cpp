@@ -50,7 +50,6 @@ int main() {
     return 0;
 
     // moc przy czlowieku zapis odczyt
-    // kolizje do reworka -> metoda kolizja w klasie organizm, jezeli organizm ma specyficzna metode kolizji to wywoluje ja zamiast zwyklej, w przeciwnym wypadku standardowa
 }
 
 
