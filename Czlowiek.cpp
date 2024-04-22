@@ -48,7 +48,7 @@ void Czlowiek::akcja(char c) {
 	}
 
 	// KOLIZJA PO RUCHU
-	if (newX != x || newY != y) {
+	if (newX != this->x || newY != this->y) {
 		if (swiat->getOrganizm(newX, newY) != nullptr)
 		{
 			this->Zwierze::kolizja(swiat->getOrganizm(newX, newY));
@@ -58,6 +58,9 @@ void Czlowiek::akcja(char c) {
 		{
 			swiat->przeniesOrganizm(this, newX, newY);
 		}
+	}
+	else {
+		this->Zwierze::kolizja(swiat->getOrganizm(newX, newY));
 	}
 }
 
