@@ -9,20 +9,16 @@ void Antylopa::akcja() {
 	switch (ruch)
 	{
 	case 0:
-		newY--;
-		newY--;
+		newY-=2;
 		break;
 	case 1:
-		newX++;
-		newX++;
+		newX+=2;
 		break;
 	case 2:
-		newY++;
-		newY++;
+		newY+=2;
 		break;
 	case 3:
-		newX--;
-		newX--;
+		newX-=2;
 		break;
 	}
 

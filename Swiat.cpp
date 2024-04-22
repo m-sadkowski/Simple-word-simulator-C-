@@ -165,7 +165,7 @@ void Swiat::wykonajTure(char strzalka) {
 		{
 			organizmy[i]->zmniejszCooldown();
 		}
-		//Sleep(1000);
+		//Sleep(100);
 		//rysujSwiat();
 		if (organizmy[i]->getSymbol() == 'C') {
 			Czlowiek* czlowiek = dynamic_cast<Czlowiek*>(organizmy[i]);

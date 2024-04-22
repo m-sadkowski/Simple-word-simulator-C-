@@ -36,7 +36,7 @@ void Lis::akcja() {
 			swiat->dodajKomunikat(komunikat);
 		}
 		else {
-			this->kolizja(organizm);
+			this->Zwierze::kolizja(organizm);
 		}
 	}
 }

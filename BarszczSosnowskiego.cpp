@@ -8,37 +8,16 @@ void BarszczSosnowskiego::kolizja(Organizm* organizm) {
 }
 
 void BarszczSosnowskiego::akcja() {
-	if (swiat->getOrganizm(x, y + 1) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x, y + 1))) {
+	const int X[4] = { 0, 0, 1, -1 };
+	const int Y[4] = { 1, -1, 0, 0 };
+	for (int i = 0; i < 4; i++) {
+		if (swiat->getOrganizm(x + X[i], y + Y[i]) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x + X[i], y + Y[i]))) {
 
-		std::string komunikat = "Barszcz Sosnowskiego zabija ";
-		komunikat += swiat->getOrganizm(x, y + 1)->nazwaOrganizmu(swiat->getOrganizm(x, y + 1)->getSymbol());
-		swiat->dodajKomunikat(komunikat);
+			std::string komunikat = "Barszcz Sosnowskiego zabija ";
+			komunikat += swiat->getOrganizm(x + X[i], y + Y[i])->nazwaOrganizmu(swiat->getOrganizm(x + X[i], y + Y[i])->getSymbol());
+			swiat->dodajKomunikat(komunikat);
 
-		swiat->usunOrganizm(swiat->getOrganizm(x, y + 1));
-	}
-	if (swiat->getOrganizm(x, y - 1) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x, y - 1))) {
-
-		std::string komunikat = "Barszcz Sosnowskiego zabija ";
-		komunikat += swiat->getOrganizm(x, y - 1)->nazwaOrganizmu(swiat->getOrganizm(x, y - 1)->getSymbol());
-		swiat->dodajKomunikat(komunikat);
-
-		swiat->usunOrganizm(swiat->getOrganizm(x, y - 1));
-	}
-	if (swiat->getOrganizm(x + 1, y) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x + 1, y))) {
-
-		std::string komunikat = "Barszcz Sosnowskiego zabija ";
-		komunikat += swiat->getOrganizm(x + 1, y)->nazwaOrganizmu(swiat->getOrganizm(x + 1, y)->getSymbol());
-		swiat->dodajKomunikat(komunikat);
-		
-		swiat->usunOrganizm(swiat->getOrganizm(x + 1, y));
-	}
-	if (swiat->getOrganizm(x - 1, y) != nullptr && !dynamic_cast<Roslina*>(swiat->getOrganizm(x - 1, y))) {
-
-		std::string komunikat = "Barszcz Sosnowskiego zabija ";
-		komunikat += swiat->getOrganizm(x - 1, y)->nazwaOrganizmu(swiat->getOrganizm(x - 1, y)->getSymbol());
-		swiat->dodajKomunikat(komunikat);
-		
-		swiat->usunOrganizm(swiat->getOrganizm(x - 1, y));
-
+			swiat->usunOrganizm(swiat->getOrganizm(x + X[i], y + Y[i]));
+		}
 	}
 }

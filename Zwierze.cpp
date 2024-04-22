@@ -4,6 +4,8 @@
 #include"FabrykaZwierzat.h"
 #include"Roslina.h"
 
+#define COOLDOWN 10
+
 using namespace std;
 
 void Zwierze::akcja() {
@@ -43,7 +45,6 @@ void Zwierze::akcja() {
 void Zwierze::kolizja(Organizm* organizm) {
 	if (organizm->maSwojaKolizje()) { // SPRAWD CZY DANY ORGANIZM MA SPECYFICZN¥ METODÊ KOLIZJI, JEŒLI NIE TO WYKORZYSTAJ T¥
 		organizm->kolizja(this);
-		return;
 	} 
 	else if (organizm->getSymbol() == this->getSymbol())
 	{
@@ -53,8 +54,8 @@ void Zwierze::kolizja(Organizm* organizm) {
 			swiat->dodajOrganizm(nowy);
 			std::string komunikat = "rozmnozenie " + this->nazwaOrganizmu(this->getSymbol());
 			swiat->dodajKomunikat(komunikat);
-			this->setCooldown(5);
-			organizm->setCooldown(5);
+			this->setCooldown(COOLDOWN);
+			organizm->setCooldown(COOLDOWN);
 		}
 	}
 	else if (dynamic_cast<Roslina*>(organizm))
@@ -78,7 +79,6 @@ void Zwierze::kolizja(Organizm* organizm) {
 		swiat->przeniesOrganizm(this, organizm->getX(), organizm->getY());
 		swiat->usunOrganizm(organizm);
 	}
-	return;
 }
 
 Zwierze::~Zwierze() {}

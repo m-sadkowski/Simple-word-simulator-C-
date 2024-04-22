@@ -48,17 +48,16 @@ void Czlowiek::akcja(char c) {
 	}
 
 	// KOLIZJA PO RUCHU
-	if (swiat->getOrganizm(newX, newY) != nullptr && (newX != x || newY != y))
-	{
-		this->kolizja(swiat->getOrganizm(newX, newY));
-		if (this != nullptr)
+	if (newX != x || newY != y) {
+		if (swiat->getOrganizm(newX, newY) != nullptr)
+		{
+			this->Zwierze::kolizja(swiat->getOrganizm(newX, newY));
+			
+		}
+		else
 		{
 			swiat->przeniesOrganizm(this, newX, newY);
 		}
-	}
-	else
-	{
-		swiat->przeniesOrganizm(this, newX, newY);
 	}
 }
 
@@ -68,6 +67,4 @@ void Czlowiek::aktywujMoc() {
 	swiat->dodajKomunikat("Czlowiek aktywowal moc");
 }
 
-Czlowiek::~Czlowiek() {
-
-}
+Czlowiek::~Czlowiek() {}

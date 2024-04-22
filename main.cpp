@@ -48,8 +48,6 @@ int main() {
     }
     delete swiat;
     return 0;
-
-    // moc przy czlowieku zapis odczyt
 }
 
 
