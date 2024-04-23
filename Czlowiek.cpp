@@ -20,22 +20,22 @@ void Czlowiek::akcja(char c) {
 	// RUCH
 	int newX = this->x;
 	int newY = this->y;
-	if (c == 'w') {
+	if (c == ARROW_UP) {
 		if (this->y > 1) {
 			newY--;
 		}
 	}
-	else if (c == 's') {
+	else if (c == ARROW_DOWN) {
 		if (this->y < swiat->getWysokosc() - 2) {
 			newY++;
 		}
 	}
-	else if (c == 'a') {
+	else if (c == ARROW_LEFT) {
 		if (this->x > 1) {
 			newX--;
 		}
 	}
-	else if (c == 'd') {
+	else if (c == ARROW_RIGHT) {
 		if (this->x < swiat->getSzerokosc() - 2) {
 			newX++;
 		}
@@ -58,9 +58,6 @@ void Czlowiek::akcja(char c) {
 		{
 			swiat->przeniesOrganizm(this, newX, newY);
 		}
-	}
-	else {
-		this->Zwierze::kolizja(swiat->getOrganizm(newX, newY));
 	}
 }
 

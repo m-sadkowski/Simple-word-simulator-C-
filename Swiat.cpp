@@ -154,7 +154,7 @@ void Swiat::rysujSwiat() {
 }
 
 void Swiat::wykonajTure(char strzalka) {
-	if (!(strzalka == 'w' || strzalka == 'a' || strzalka == 's' || strzalka == 'd' || strzalka == 'm'))
+	if (!(strzalka == ARROW_UP || strzalka == ARROW_DOWN || strzalka == ARROW_LEFT || strzalka == ARROW_RIGHT || strzalka == 'm'))
 	{
 		return;
 	}
