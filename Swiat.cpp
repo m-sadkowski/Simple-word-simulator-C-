@@ -226,10 +226,20 @@ void Swiat::zapiszSwiat()
 	std::cin >> nazwa_pliku;
 	nazwa_pliku += ".txt";
 	std::ofstream plik(nazwa_pliku);
+	bool czyCzlowiekZyje = false;
+	Czlowiek* czlowiek = nullptr;
 	plik << m << " " << n << std::endl;
 	plik << organizmy.size() << std::endl;
 	for (int i = 0; i < organizmy.size(); i++) {
+		if (organizmy[i]->getSymbol() == 'C') {
+			czyCzlowiekZyje = true;
+			czlowiek = dynamic_cast<Czlowiek*>(organizmy[i]);
+		}
 		plik << organizmy[i]->getSymbol() << " " << organizmy[i]->getX() << " " << organizmy[i]->getY() << " " << organizmy[i]->getWiek() << " " << organizmy[i]->getSila() << " " << organizmy[i]->getInicjatywa() << " " << organizmy[i]->getCooldown() << std::endl;
+	}
+	if (czyCzlowiekZyje)
+	{
+		plik << czlowiek->getCzasMocy() << " " << czlowiek->getMocUzyta() << std::endl;
 	}
 	plik.close();
 	std::cout << "Plik zostal zapisany." << std::endl;
@@ -320,6 +330,19 @@ void Swiat::wczytajSwiat()
 				break;
 		}
 	}
+	int czasMocy, mocUzyta;
+	plik >> czasMocy >> mocUzyta;
+	for (int i = 0; i < organizmy.size(); i++)
+	{
+		if (organizmy[i]->getSymbol() == 'C')
+		{
+			Czlowiek* czlowiek = dynamic_cast<Czlowiek*>(organizmy[i]);
+			czlowiek->setCzasMocy(czasMocy);
+			czlowiek->setMocUzyta(mocUzyta);
+			break;
+		}
+	}
+	plik.close();
 }
 
 Swiat::~Swiat() {

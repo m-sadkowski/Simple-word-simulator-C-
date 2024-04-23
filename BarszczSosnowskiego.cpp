@@ -4,6 +4,7 @@
 void BarszczSosnowskiego::kolizja(Organizm* organizm) {
 	std::string komunikat = "Barszcz Sosnowskiego zabija " + organizm->nazwaOrganizmu(organizm->getSymbol());
 	swiat->usunOrganizm(organizm);
+	swiat->usunOrganizm(this);
 	return;
 }
 

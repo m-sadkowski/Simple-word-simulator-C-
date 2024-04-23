@@ -13,5 +13,11 @@ public:
 	void akcja(char c);
 	bool maSwojaKolizje() override { return false; }
 	void aktywujMoc();
+
+	void setMocUzyta(bool mocUzyta) { this->mocUzyta = mocUzyta; }
+	int getMocUzyta() { if (mocUzyta) return 1; else return 0; }
+	void setCzasMocy(int czasMocy) { this->czasMocy = czasMocy; }
+	int getCzasMocy() { return czasMocy; }
+
 	~Czlowiek();
 };
