@@ -2,21 +2,29 @@
 #include"Swiat.h"
 #include"Roslina.h"
 
+#define COOLDOWN 20
+#define MOC 5
+
 void Czlowiek::akcja(char c) {
 	// OBSLUGA MOCY
-	if (czasMocy == 5)
+	if (cooldown > 0)
 	{
-		this->sila = stalaSila;
+		cooldown--;
+	}
+	if (mocUzyta) {
+		czasMocy++;
+	}
+	if (czasMocy == MOC + 1)
+	{
 		mocUzyta = false;
 		czasMocy = 0;
-		cooldown = 5;
+		cooldown = COOLDOWN;
 	}
 	if (this->sila > stalaSila && mocUzyta)
 	{
 		this->sila--;
 		swiat->dodajKomunikat("Sila czlowieka wynosi " + std::to_string(this->sila));
 	}
-
 	// RUCH
 	int newX = this->x;
 	int newY = this->y;
@@ -43,7 +51,6 @@ void Czlowiek::akcja(char c) {
 	else if (c == 'm') {
 		if (!mocUzyta && !cooldown) {
 			aktywujMoc();
-			czasMocy++;
 		}
 	}
 
@@ -62,9 +69,9 @@ void Czlowiek::akcja(char c) {
 }
 
 void Czlowiek::aktywujMoc() {
-	this->sila = 10;
+	this->sila += MOC;
 	this->mocUzyta = true;
-	swiat->dodajKomunikat("Czlowiek aktywowal moc");
+	swiat->dodajKomunikat("Czlowiek wypil eliksir");
 }
 
 Czlowiek::~Czlowiek() {}
