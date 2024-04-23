@@ -1,6 +1,7 @@
 #include"Roslina.h"
 #include"Swiat.h"
 #include"Cursor.h"
+#include"FabrykaRoslin.h"
 
 using namespace std;
 
@@ -14,7 +15,8 @@ void Roslina::akcja() {
 		if (newX <= 0 || newX >= swiat->getSzerokosc() - 1 || newY <= 0 || newY >= swiat->getWysokosc() - 1 || swiat->getOrganizm(newX, newY) != nullptr) {
 			return;
 		}
-		swiat->dodajOrganizm(new Roslina(this->sila, this->inicjatywa, this->symbol, newX, newY, this->swiat));
+		Roslina* nowa = FabrykaRoslin::utworzRosline(this->getSymbol(), newX, newY, this->swiat);
+		swiat->dodajOrganizm(nowa);
 
 		std::string komunikat = "rozprzestrzenia sie "; // KOMUNIKATY
 		komunikat += this->nazwaOrganizmu(this->getSymbol());

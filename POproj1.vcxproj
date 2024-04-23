@@ -147,6 +147,7 @@
     <ClInclude Include="BarszczSosnowskiego.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Czlowiek.h" />
+    <ClInclude Include="FabrykaRoslin.h" />
     <ClInclude Include="FabrykaZwierzat.h" />
     <ClInclude Include="Guarana.h" />
     <ClInclude Include="Lis.h" />

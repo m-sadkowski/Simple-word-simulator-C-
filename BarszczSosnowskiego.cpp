@@ -20,4 +20,5 @@ void BarszczSosnowskiego::akcja() {
 			swiat->usunOrganizm(swiat->getOrganizm(x + X[i], y + Y[i]));
 		}
 	}
+	Roslina::akcja();
 }
