@@ -1,4 +1,4 @@
---- Overiew ---
+--- Overview ---
 Welcome to "The World Simulation," a project where we explore the fundamentals of object-oriented programming (OOP) through the lens of a virtual ecosystem. In this endeavor, I've crafted a C++ program that mirrors the complexities of a living world, complete with animals possessing unique abilities and human navigating through it.
 
 --- Key Features --- 
