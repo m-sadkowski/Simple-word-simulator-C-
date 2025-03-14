@@ -1,15 +1,87 @@
---- Overview ---
-Welcome to "The World Simulation," a project where we explore the fundamentals of object-oriented programming (OOP) through the lens of a virtual ecosystem. In this endeavor, I've crafted a C++ program that mirrors the complexities of a living world, complete with animals possessing unique abilities and human navigating through it.
+# The World Simulation
 
---- Key Features --- 
-Object-Oriented Design: This project revolves around the principles of OOP, encapsulating data within objects and enabling interactions through well-defined interfaces.
-Virtual Ecosystem: Through meticulous coding, creation of a simulated environment where various entities coexist, interact, and influence each other dynamically.
-Abundant Animal Diversity: The simulation boasts a rich array of animals, each with distinct characteristics and abilities. From swift predators to docile herbivores, the ecosystem thrives on diversity.
-Special Abilities: Animals are not mere static entities; they possess special abilities that add depth to their interactions. Whether it's camouflage for stealth, agility for swift movement, or strength for dominance, each ability shapes the dynamics of the ecosystem.
-Human Interactions: Users can control a human character within the simulation, navigating through the environment using arrow keys. Additionally, a special ability key enables the human to perform unique actions, adding an interactive dimension to the experience.
+Welcome to **The World Simulation**, a project that explores the fundamentals of **Object-Oriented Programming (OOP)** through the creation of a virtual ecosystem. This C++ program simulates a living world filled with diverse animals, each possessing unique abilities, and a human character that users can control. The project demonstrates key OOP concepts such as inheritance, polymorphism, encapsulation, and modularity while providing an interactive experience.
 
---- Tasks --- 
-Object Modeling: Learn how to represent real-world entities as objects, complete with attributes and behaviors, fostering a deeper understanding of OOP principles.
-Inheritance and Polymorphism: Explore the concepts of inheritance and polymorphism as you witness animals inheriting traits and exhibiting diverse behaviors based on their types.
-Encapsulation and Modularity: Experience the power of encapsulation and modularity in code organization, promoting reusability and maintainability in complex systems.
-User Interaction: Engage with the simulation firsthand, controlling a human character and experiencing the consequences of your actions within the virtual ecosystem.
+---
+
+## Key Features
+
+1. **Object-Oriented Design**:
+   - The project is built around OOP principles, encapsulating data within objects and enabling interactions through well-defined interfaces.
+
+2. **Virtual Ecosystem**:
+   - A simulated environment where various entities (animals, humans) coexist, interact, and influence each other dynamically.
+
+---
+
+## Tasks
+
+Through this project, you will:
+
+1. **Object Modeling**:
+   - Learn how to represent real-world entities as objects with attributes and behaviors.
+
+2. **Inheritance and Polymorphism**:
+   - Explore how animals inherit traits and exhibit diverse behaviors based on their types.
+
+3. **Encapsulation and Modularity**:
+   - Experience the benefits of encapsulation and modularity in organizing code for reusability and maintainability.
+
+4. **User Interaction**:
+   - Engage with the simulation by controlling a human character and observing the consequences of your actions.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- A C++ compiler (e.g., `g++`).
+- Basic knowledge of Object-Oriented Programming (OOP).
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/m-sadkowski/Simple-word-simulator-C-.git
+   cd Simple-word-simulator-C-
+   ```
+
+2. Compile the program:
+   ```bash
+   g++ -o world_simulator main.cpp
+   ```
+
+3. Run the program:
+   ```bash
+   ./world_simulator
+   ```
+
+---
+
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+For questions or feedback, please reach out to [m-sadkowski](https://github.com/m-sadkowski).
+
+---
+
+Enjoy exploring the virtual world and its dynamic interactions! 🌍
